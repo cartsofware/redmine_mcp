@@ -1,4 +1,9 @@
-# Redmine MCP
+# Redmine MCP - ChatGPT 連携と OAuth2 認証
+
+<!-- CART ChatGPT introduction -->
+
+この MCP プラグインを使用すると、ChatGPT などの対応 AI クライアントから OAuth2 Authorization Code と PKCE S256 を利用して Redmine に接続できます。従来の API キー認証も引き続き利用できます。
+
 
 [ウェブサイト](https://redmine-kanban.com/)
 

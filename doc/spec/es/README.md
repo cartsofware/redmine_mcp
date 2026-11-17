@@ -1,4 +1,9 @@
-# Redmine MCP
+# Redmine MCP - Integración con ChatGPT mediante OAuth2
+
+<!-- CART ChatGPT introduction -->
+
+Este plugin MCP permite conectar ChatGPT y otros clientes de IA compatibles a Redmine mediante OAuth2 Authorization Code con PKCE S256. Se mantiene la autenticación mediante clave API.
+
 
 [Sitio web](https://redmine-kanban.com/)
 
