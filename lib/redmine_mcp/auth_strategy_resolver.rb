@@ -1,7 +1,11 @@
 # frozen_string_literal: true
 
-# Redmine MCP plugin
-# Additional OAuth2 authentication support: CART contributors
+# Redmine MCP - OAuth2 integration
+#
+# Copyright (C) 2026 Andrea Costa - CART Software
+# https://www.cartsoftware.eu
+# assistenza@cartsoftware.eu
+#
 # SPDX-License-Identifier: GPL-2.0-or-later
 
 module RedmineMcp

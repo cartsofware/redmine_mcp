@@ -60,7 +60,7 @@ Restart Redmine.
 
 ### 5. User API key
 
-Every user who will work through MCP must have an API key:
+Users authenticating with an API key must obtain one:
 
 **My account → API access key** (or via the user REST API).
 
@@ -69,6 +69,84 @@ Pass the key in the header:
 ```
 X-Redmine-API-Key: <your_key>
 ```
+
+## OAuth2 Authentication (CART Software Extension)
+
+This extension adds OAuth2 authentication to Redmine MCP, allowing
+AI clients such as ChatGPT to connect using the OAuth2 Authorization
+Code flow with PKCE S256.
+
+### Features
+
+- OAuth2 Bearer token authentication through Doorkeeper.
+- Authorization Code flow with PKCE S256.
+- OAuth2 Protected Resource Metadata discovery.
+- OAuth2 Authorization Server Metadata discovery.
+- Continued support for Redmine API key authentication.
+- Enforcement of the global `use_mcp` permission.
+
+### Requirements
+
+OAuth2 requires Doorkeeper to be installed and configured in Redmine.
+The MCP server must be accessible through HTTPS.
+
+This integration is currently available in the
+[`feature/oauth2-mcp`](https://github.com/cartsofware/redmine_mcp/tree/feature/oauth2-mcp)
+branch. Production compatibility has not yet been validated.
+
+### OAuth2 endpoints
+
+| Endpoint | Purpose |
+|---|---|
+| `/mcp` | MCP Streamable HTTP endpoint |
+| `/oauth/authorize` | OAuth2 authorization |
+| `/oauth/token` | OAuth2 token exchange |
+| `/.well-known/oauth-protected-resource` | Protected resource discovery |
+| `/.well-known/oauth-protected-resource/mcp` | MCP resource discovery |
+| `/.well-known/oauth-authorization-server` | Authorization server discovery |
+
+### Connecting ChatGPT
+
+Configure a custom MCP connector in ChatGPT using:
+
+`https://your-redmine.example.com/mcp`
+
+Configure OAuth2 authentication with:
+
+- Authorization URL: `https://your-redmine.example.com/oauth/authorize`
+- Token URL: `https://your-redmine.example.com/oauth/token`
+- Scope: `use_mcp`
+- PKCE: S256
+
+Register the redirect URI supplied by your MCP client in Doorkeeper.
+
+Users authenticate through Redmine. MCP operations remain subject
+to their existing Redmine permissions.
+
+### Security
+
+OAuth2 Bearer tokens are validated through Doorkeeper.
+Redmine API key authentication remains supported.
+
+The `use_mcp` permission is required independently of the
+authentication method.
+
+The public hostname and HTTPS protocol must match the Redmine
+configuration. Reverse proxies must preserve the original Host header.
+
+### Author and contribution
+
+**Andrea Costa — CART Software**
+
+OAuth2 authentication, PKCE integration, authentication strategies,
+authorization policy, metadata discovery and associated tests.
+
+- Website: https://www.cartsoftware.eu
+- Contact: assistenza@cartsoftware.eu
+- GitHub: https://github.com/cartsofware/redmine_mcp
+
+This work extends the original Redmine MCP project.
+Original authorship and licensing remain unchanged.
 
 ## Connecting an MCP client
 

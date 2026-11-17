@@ -1,3 +1,13 @@
+# frozen_string_literal: true
+
+# Redmine MCP - OAuth2 integration
+#
+# Copyright (C) 2026 Andrea Costa - CART Software
+# https://www.cartsoftware.eu
+# assistenza@cartsoftware.eu
+#
+# SPDX-License-Identifier: GPL-2.0-or-later
+
 class McpOauthMetadataController < ApplicationController
   skip_before_action :check_if_login_required
 
