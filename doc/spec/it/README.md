@@ -70,6 +70,57 @@ Passare la chiave nell'header:
 X-Redmine-API-Key: <la_tua_chiave>
 ```
 
+## Autenticazione OAuth2
+
+Questa estensione consente ai client AI come ChatGPT di collegarsi a Redmine mediante OAuth2 Authorization Code con PKCE S256.
+
+### Requisiti
+
+Doorkeeper deve essere installato e configurato in Redmine. Il server MCP deve essere raggiungibile tramite HTTPS.
+
+### OAuth2 endpoints
+
+| Endpoint | Purpose |
+|---|---|
+| `/mcp` | MCP Streamable HTTP |
+| `/oauth/authorize` | OAuth2 authorization |
+| `/oauth/token` | OAuth2 token exchange |
+| `/.well-known/oauth-protected-resource` | Protected resource metadata |
+| `/.well-known/oauth-protected-resource/mcp` | MCP resource metadata |
+| `/.well-known/oauth-authorization-server` | Authorization server metadata |
+
+### Collegamento di ChatGPT
+
+MCP URL: `https://your-redmine.example.com/mcp`
+
+- Authorization URL: `https://your-redmine.example.com/oauth/authorize`
+- Token URL: `https://your-redmine.example.com/oauth/token`
+- Scope: `use_mcp`
+- PKCE: `S256`
+
+Configurare un client OAuth2 con scope `use_mcp`, PKCE S256 e URI di reindirizzamento fornito dal client MCP.
+
+### Sicurezza e compatibilità
+
+L'autenticazione tramite API key rimane disponibile. Si applicano i permessi Redmine e il permesso globale `use_mcp`.
+
+The public Redmine hostname and HTTPS protocol must match the external URL.
+Production compatibility has not yet been validated.
+
+### Sviluppo e contributi
+
+**Andrea Costa — CART Software**
+
+OAuth2 integration, authentication strategies, authorization policy,
+metadata discovery and tests.
+
+- Website: https://www.cartsoftware.eu
+- Contact: assistenza@cartsoftware.eu
+- GitHub: https://github.com/cartsofware/redmine_mcp
+
+This extension builds upon the original Redmine MCP project.
+Original authorship and licensing remain unchanged.
+
 ## Connessione di un client MCP
 
 Il server utilizza **Streamable HTTP** (stateless). Endpoint:

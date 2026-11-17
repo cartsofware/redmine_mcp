@@ -70,6 +70,57 @@ MCP 経由で作業する各ユーザーは API キーを持つ必要があり�
 X-Redmine-API-Key: <your_key>
 ```
 
+## OAuth2 認証
+
+この拡張機能により、ChatGPT などの AI クライアントは OAuth2 Authorization Code と PKCE S256 を使用して Redmine に接続できます。
+
+### 要件
+
+Redmine に Doorkeeper をインストールして設定する必要があります。MCP サーバーは HTTPS で公開してください。
+
+### OAuth2 endpoints
+
+| Endpoint | Purpose |
+|---|---|
+| `/mcp` | MCP Streamable HTTP |
+| `/oauth/authorize` | OAuth2 authorization |
+| `/oauth/token` | OAuth2 token exchange |
+| `/.well-known/oauth-protected-resource` | Protected resource metadata |
+| `/.well-known/oauth-protected-resource/mcp` | MCP resource metadata |
+| `/.well-known/oauth-authorization-server` | Authorization server metadata |
+
+### ChatGPT の接続
+
+MCP URL: `https://your-redmine.example.com/mcp`
+
+- Authorization URL: `https://your-redmine.example.com/oauth/authorize`
+- Token URL: `https://your-redmine.example.com/oauth/token`
+- Scope: `use_mcp`
+- PKCE: `S256`
+
+スコープ `use_mcp`、PKCE S256、および MCP クライアントが指定するリダイレクト URI を使用して OAuth2 クライアントを設定してください。
+
+### セキュリティと互換性
+
+既存の API キー認証も引き続き使用できます。Redmine の権限とグローバル権限 `use_mcp` が適用されます。
+
+The public Redmine hostname and HTTPS protocol must match the external URL.
+Production compatibility has not yet been validated.
+
+### 開発と貢献
+
+**Andrea Costa — CART Software**
+
+OAuth2 integration, authentication strategies, authorization policy,
+metadata discovery and tests.
+
+- Website: https://www.cartsoftware.eu
+- Contact: assistenza@cartsoftware.eu
+- GitHub: https://github.com/cartsofware/redmine_mcp
+
+This extension builds upon the original Redmine MCP project.
+Original authorship and licensing remain unchanged.
+
 ## MCP クライアントの接続
 
 サーバーは **Streamable HTTP**（stateless）を使用します。エンドポイント:

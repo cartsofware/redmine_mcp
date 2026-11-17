@@ -90,9 +90,8 @@ Code flow with PKCE S256.
 OAuth2 requires Doorkeeper to be installed and configured in Redmine.
 The MCP server must be accessible through HTTPS.
 
-This integration is currently available in the
-[`feature/oauth2-mcp`](https://github.com/cartsofware/redmine_mcp/tree/feature/oauth2-mcp)
-branch. Production compatibility has not yet been validated.
+The OAuth2 integration is included in the current development
+version of this repository. Production compatibility has not yet been validated.
 
 ### OAuth2 endpoints
 
