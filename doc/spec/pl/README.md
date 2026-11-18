@@ -4,6 +4,8 @@
 
 Ta wtyczka MCP umożliwia ChatGPT i innym zgodnym klientom AI łączenie się z Redmine przez OAuth2 Authorization Code z PKCE S256. Uwierzytelnianie kluczem API pozostaje dostępne.
 
+Integracja łączy Redmine z ChatGPT przez Model Context Protocol (MCP), umożliwiając pracę z projektami, zgłoszeniami, wpisami czasu i stronami Wiki zgodnie z uprawnieniami Redmine. OAuth2 jest częścią wersji rozwojowej; zgodność produkcyjna nie została jeszcze zweryfikowana. [Konfiguracja ChatGPT](../../../README.md#connecting-chatgpt).
+
 
 [Strona](https://redmine-kanban.com/)
 
